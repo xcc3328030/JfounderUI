@@ -22,9 +22,7 @@ export default {
 }
 </script>
 <style scoped lang="less">
-button{
-  border-radius: 8px;
-}
+
 </style>
 
 

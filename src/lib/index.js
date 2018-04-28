@@ -1,9 +1,13 @@
-import paykeyboard from './button';
-import zfspan from './span';
+import './select/select.less'
+
+import paykeyboard from './button'
+import zfspan from './span'
+import zfselect from './select';
 
 const components = [
    paykeyboard,
-   zfspan
+   zfspan,
+   zfselect
  ]
 
 const install = function(Vue) {
@@ -19,5 +23,6 @@ if (typeof window !== 'undefined' && window.Vue) {
 export default {
   install,
   paykeyboard,
-  zfspan
+  zfspan,
+  zfselect
 }

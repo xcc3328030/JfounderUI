@@ -1,13 +1,15 @@
 const path = require('path')
 const webpack = require('webpack')
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
 module.exports = {
-  // entry: './src/main.js', // 开发时项目入口
-  entry: './src/lib/index.js',  // 打包发布时入口
+  //entry: './src/main.js',  开发时项目入口
+  entry: './src/lib/index.js', //打包发布时入口
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
@@ -21,12 +23,6 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        options: {
-          loaders: {
-            'scss': 'vue-style-loader!css-loader!sass-loader',
-            'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
-          }
-        }
       }, {
         test: /\.js$/,
         loader: 'babel-loader',
@@ -53,11 +49,17 @@ module.exports = {
           name: 'fonts/[name].[hash:7].[ext]'
         }
       }, {
-        test: /\.less$/,
-        loader: "style-loader!css-loader!less-loader"
-      }, {
-        test: /\.css$/,
-        loaders: ['style-loader', 'css-loader']
+        test: /.\less$/,
+        use: ExtractTextPlugin.extract({
+          use: [
+            {
+              loader: 'css-loader'
+            }, {
+              loader: 'less-loader'
+            }
+          ],
+          fallback: 'style-loader'
+        })
       }
     ]
   },
@@ -77,23 +79,25 @@ module.exports = {
   performance: {
     hints: false
   },
-  devtool: '#eval-source-map' //生成map文件方便调试
+  // devtool: '#eval-source-map' //生成map文件方便调试
 }
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports.devtool = '#source-map'
+  // module.exports.devtool = '#source-map'
   module.exports.plugins = (module.exports.plugins || []).concat([
+    new CleanWebpackPlugin(['dist']),
+    new ExtractTextPlugin('css/jfounder-ui.css'),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"production"'
       }
     }),
     new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
+      // sourceMap: true,
       compress: {
         warnings: false
       }
     }),
-    new webpack.LoaderOptionsPlugin({minimize: true})
+  //  new webpack.LoaderOptionsPlugin({minimize: true})
   ])
 }

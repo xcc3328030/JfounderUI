@@ -2,6 +2,8 @@
 <div id="app">
   <keyboard></keyboard>
   <zfspan></zfspan>
+
+  <zfselect></zfselect> 
 </div>
 </template>
 
