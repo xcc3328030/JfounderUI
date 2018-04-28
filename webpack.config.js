@@ -6,8 +6,8 @@ function resolve(dir) {
 }
 
 module.exports = {
-  entry: './src/main.js', // 开发时项目入口
-  // entry: './src/lib/index.js',  打包发布时入口
+  // entry: './src/main.js', // 开发时项目入口
+  entry: './src/lib/index.js',  // 打包发布时入口
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
@@ -46,8 +46,8 @@ module.exports = {
           name: 'media/[name].[hash:7].[ext]'
         }
       }, {
-        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: 'url-loader',
+        test: /\.(eot|woff|woff2|ttf)([\\?]?.*)$/,
+        loader: "file-loader",
         options: {
           limit: 10000,
           name: 'fonts/[name].[hash:7].[ext]'
@@ -55,6 +55,9 @@ module.exports = {
       }, {
         test: /\.less$/,
         loader: "style-loader!css-loader!less-loader"
+      }, {
+        test: /\.css$/,
+        loaders: ['style-loader', 'css-loader']
       }
     ]
   },

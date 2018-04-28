@@ -12,10 +12,9 @@
     "pub": "npm run build && npm publish"
   },
   "dependencies": {
-    "vue": "^2.5.2",
-    "vue-router": "^3.0.1",
-    "less": "^3.0.2",
-    "less-loader": "^4.1.0"
+    "element-ui": "^2.3.6",
+    "vue": "^2.5.16",
+    "vue-router": "^3.0.1"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",
@@ -27,6 +26,9 @@
     "vue-loader": "^12.1.0",
     "vue-template-compiler": "^2.3.3",
     "webpack": "^2.6.1",
-    "webpack-dev-server": "^2.4.5"
+    "webpack-dev-server": "^2.4.5",
+    "less": "^3.0.2",
+    "less-loader": "^4.1.0",
+    "style-loader": "^0.21.0"
   }
 }

@@ -1,6 +1,6 @@
 <template>
 <div id="app">
-  <keyboard id="title"></keyboard>
+  <keyboard></keyboard>
   <zfspan></zfspan>
 </div>
 </template>
